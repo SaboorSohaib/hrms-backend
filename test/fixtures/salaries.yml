@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  salary_amount: 1
+  month: 2023-09-25
+  employee: one
+
+two:
+  salary_amount: 1
+  month: 2023-09-25
+  employee: two
