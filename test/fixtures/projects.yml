@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  starting_date: 2023-09-25
+  ending_date: 2023-09-25
+  duration: 1
+  department: one
+
+two:
+  name: MyString
+  starting_date: 2023-09-25
+  ending_date: 2023-09-25
+  duration: 1
+  department: two
