@@ -1,10 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_request
-  before_action :ser_department
+  before_action :set_department
   before_action :set_project, only: %i[show update destroy]
 
   def index
-    @projects = Project.all
+    @projects = @department.projects
     render json: @projects, status: :ok
   end
 
@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
 
   private
 
-  def ser_department
+  def set_department
     @department = Department.find(params[:department_id])
   end
 
@@ -45,6 +45,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :starting_date, :ending_date, :duration, :department_id)
+    params.require(:project).permit(:name, :starting_date, :ending_date, :budget, :department_id)
   end
 end

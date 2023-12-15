@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_27_065020) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_24_162739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,7 +53,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_065020) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.integer "phone"
+    t.string "phone"
     t.string "gender"
     t.string "photo"
     t.date "hire_date"
@@ -77,7 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_065020) do
     t.string "name"
     t.date "starting_date"
     t.date "ending_date"
-    t.integer "duration"
+    t.integer "budget"
     t.bigint "department_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,6 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_27_065020) do
     t.bigint "employee_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["employee_id", "month"], name: "index_salaries_on_employee_id_and_month", unique: true
     t.index ["employee_id"], name: "index_salaries_on_employee_id"
   end
 

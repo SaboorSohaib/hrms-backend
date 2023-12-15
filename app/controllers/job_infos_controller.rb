@@ -1,7 +1,12 @@
-class JobsInfoController < ApplicationController
+class JobInfosController < ApplicationController
   before_action :authenticate_request
   before_action :set_employee
-  before_action :set_job_info, only: %i[update destroy]
+  before_action :set_job_info, only: %i[update]
+
+  def index
+    @job_info = @employee.job_info
+    render json: @job_info
+  end
 
   def create
     @job_info = @employee.build_job_info(job_info_params)
@@ -20,11 +25,6 @@ class JobsInfoController < ApplicationController
     end
   end
 
-  def destroy
-    @job_info.destroy
-    head :no_content
-  end
-
   private
 
   def set_employee
@@ -32,7 +32,7 @@ class JobsInfoController < ApplicationController
   end
 
   def set_job_info
-    @job_info = JobInfo.find(params[:id])
+    @job_info = @employee.find(params[:id])
   end
 
   def job_info_params

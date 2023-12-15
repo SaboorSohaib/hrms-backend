@@ -1,7 +1,12 @@
 class ContractsController < ApplicationController
   before_action :authenticate_request
   before_action :set_employee
-  before_action :set_contract, only: %i[update destroy]
+  before_action :set_contract, only: %i[update]
+
+  def index
+    @contracts = @employee.contracts
+    render json: @contracts
+  end
 
   def create
     @contract = @employee.contracts.create(contract_params)
@@ -10,11 +15,6 @@ class ContractsController < ApplicationController
     else
       render json: @contract.errors, status: :unprocessable_entity
     end
-  end
-
-  def destroy
-    @contract.destroy
-    head :no_content
   end
 
   private

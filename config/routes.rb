@@ -3,14 +3,19 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+  get 'users/employees/:employee_id/addresses', to: 'addresses#index'
+  get 'users/employees/:employee_id/job_infos', to: 'job_infos#index'
+  get 'users/employees/:employee_id/contracts', to: 'contracts#index'
+  get 'users/employees/:employee_id/salaries', to: 'salaries#index'
+  get 'users/employees/:employee_id/attendances', to: 'attendances#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   resources :users, only: [:index, :show, :new, :create ] do
     resources :employees, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-      resources :attendances, only: [:index, :new, :create, :destroy]
-      resources :contracts, only: [:new, :create, :destroy]
-      resources :salaries, only: [:new, :create, :update, :destroy]
-      resources :addresses, only: [:new, :create, :update, :destroy]
-      resources :jobs_info, only: [:new, :create, :update, :destroy]
+      resources :addresses, only: [:new, :create, :update]
+      resources :attendances, only: [:new, :create, :update]
+      resources :contracts, only: [:new, :create, :update]
+      resources :salaries, only: [:new, :create, :update]
+      resources :job_infos, only: [:new, :create, :update]
     end
   end
 

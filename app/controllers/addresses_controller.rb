@@ -1,7 +1,17 @@
 class AddressesController < ApplicationController
   before_action :authenticate_request
   before_action :set_employee
-  before_action :set_address, only: %i[update destroy]
+  before_action :set_address, only: %i[update]
+
+  def index
+    @address = @employee.address
+    render json: @address
+  end
+
+  def show
+    @address = Address.find_by(employee_id: params[:employee_id]);
+    render json: @address
+  end
 
   def create
     @address = @employee.build_address(address_params)
@@ -20,11 +30,6 @@ class AddressesController < ApplicationController
     end
   end
 
-  def destroy
-    @address.destroy
-    head :no_content
-  end
-
   private
 
   def set_employee
@@ -32,7 +37,7 @@ class AddressesController < ApplicationController
   end
 
   def set_address
-    @address = Address.find(params[:id])
+    @address = @employee.find(params[:id])
   end
 
   def address_params

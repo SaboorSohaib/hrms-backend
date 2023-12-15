@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
   before_action :set_report, only: %i[show update destroy]
 
   def index
-    @reports = Report.all
+    @reports = @department.reports
     render json: @reports, status: :ok
   end
 
